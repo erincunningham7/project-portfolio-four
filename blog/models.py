@@ -25,7 +25,8 @@ class BlogPost(models.Model):
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(
         max_length=6, choices=STATUS_CHOICES, default=DRAFT)
-    likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    # likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    likes = models.IntegerField(default=0)
 
     # return string representation of title
     def __str__(self):
@@ -36,5 +37,7 @@ class BlogPost(models.Model):
         ordering = ["-date_created"]
 
     # helper method to return num of likes on a post
-    def number_of_likes(self):
-        return self.likes.count()
+    # def number_of_likes(self):
+    #    return self.likes.count()
+    def get_likes(self):
+        return self.likes
