@@ -5,9 +5,11 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # create blog post class based model inheriting from standard model
+
+
 class BlogPost(models.Model):
 
-    # define a BlogPost model with a status field that can have one of two 
+    # define a BlogPost model with a status field that can have one of two
     # choices: 'Draft' or 'Posted'
     DRAFT = 'draft'
     POSTED = 'posted'
@@ -31,7 +33,7 @@ class BlogPost(models.Model):
 
     # apply descending ordering to posts
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-date_created"]
 
     # helper method to return num of likes on a post
     def number_of_likes(self):
