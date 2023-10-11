@@ -41,3 +41,25 @@ class BlogPost(models.Model):
     #    return self.likes.count()
     def get_likes(self):
         return self.likes
+
+# create a comment class based model inheriting from the standard model
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('BlogPost', on_delete=models.CASCADE)
+    author = models.CharField(max_length=100)
+    text = models.TextField()
+    date_created = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Comment by {self.author} on {self.post.title}'
+
+
+# apply descending ordering to comments
+# update later to order by popularity
+
+
+    class Meta:
+        ordering = ["-date_created"]
+
