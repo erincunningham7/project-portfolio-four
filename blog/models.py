@@ -25,8 +25,9 @@ class BlogPost(models.Model):
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(
         max_length=6, choices=STATUS_CHOICES, default=DRAFT)
-    # likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
-    likes = models.IntegerField(default=0)
+    # likes = models.ManyToManyField(User, related_name='post_likes',
+    # blank=True)
+    # likes = models.IntegerField(default=0)
 
     # return string representation of title
     def __str__(self):
@@ -55,6 +56,7 @@ class Comment(models.Model):
     text = models.TextField()
     date_created = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
+    upvotes = models.IntegerField(default=0)
 
     def __str__(self):
         return f'Comment by {self.author} on {self.post.title}'
