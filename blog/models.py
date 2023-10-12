@@ -32,6 +32,9 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
+    def number_of_likes(self):
+        return Comment.objects.filter(post=self, approved=True).count()
+
     # apply descending ordering to posts
     class Meta:
         ordering = ["-date_created"]
@@ -39,8 +42,9 @@ class BlogPost(models.Model):
     # helper method to return num of likes on a post
     # def number_of_likes(self):
     #    return self.likes.count()
-    def get_likes(self):
-        return self.likes
+    # def get_likes(self):
+    #    return self.likes
+
 
 # create a comment class based model inheriting from the standard model
 
@@ -55,11 +59,7 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.author} on {self.post.title}'
 
-
 # apply descending ordering to comments
 # update later to order by popularity
-
-
     class Meta:
         ordering = ["-date_created"]
-
