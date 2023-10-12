@@ -25,6 +25,7 @@ class BlogPost(models.Model):
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(
         max_length=6, choices=STATUS_CHOICES, default=DRAFT)
+    slug = models.SlugField(max_length=250, unique=True,)
     # likes = models.ManyToManyField(User, related_name='post_likes',
     # blank=True)
     # likes = models.IntegerField(default=0)
