@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # import cloudinary field for images
 from cloudinary.models import CloudinaryField
-# from django_quill.fields import QuillField
+from django_quill.fields import QuillField
 
 # create blog post class based model inheriting from standard model
 
@@ -22,7 +22,7 @@ class BlogPost(models.Model):
 
     title = models.CharField(max_length=250, unique=True)
     date_created = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = QuillField()
     image = CloudinaryField('image', default='placeholder')
     status = models.CharField(
         max_length=6, choices=STATUS_CHOICES, default=DRAFT)
