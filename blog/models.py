@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # import cloudinary field for images
 from cloudinary.models import CloudinaryField
+from django_quill.fields import QuillField
 
 # create blog post class based model inheriting from standard model
 
