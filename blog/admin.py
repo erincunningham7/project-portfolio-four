@@ -13,3 +13,4 @@ class QuillPostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    list_filter = ('approved', 'date_created', 'upvotes')
