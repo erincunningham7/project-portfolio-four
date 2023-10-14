@@ -1,6 +1,6 @@
 from django.contrib import admin
 # import blogpost model
-from .models import BlogPost
+from .models import BlogPost, Comment
 
 
 @admin.register(BlogPost)
