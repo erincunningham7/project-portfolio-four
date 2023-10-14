@@ -8,3 +8,4 @@ class BlogListView(generic.ListView):
     queryset = BlogPost.objects.filter(
         status=POSTED).order_by('-date_created')
     paginate_by = 3
+    template_name = 'index.html'
