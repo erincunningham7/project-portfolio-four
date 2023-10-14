@@ -7,3 +7,4 @@ from .models import BlogPost
 class QuillPostAdmin(admin.ModelAdmin):
     pass
     prepopulated_fields = {'slug': ('title',), }
+    list_filter = ('date_created', 'status')
