@@ -6,3 +6,4 @@ from .models import BlogPost
 @admin.register(BlogPost)
 class QuillPostAdmin(admin.ModelAdmin):
     pass
+    prepopulated_fields = {'slug': ('title',), }
