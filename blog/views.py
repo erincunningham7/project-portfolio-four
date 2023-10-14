@@ -5,4 +5,5 @@ from .models import BlogPost
 
 class BlogListView(generic.ListView):
     model = BlogPost
-    
+    queryset = BlogPost.objects.filter(
+        status=POSTED).order_by('-date_created')
