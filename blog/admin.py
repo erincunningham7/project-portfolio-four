@@ -9,3 +9,7 @@ class QuillPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',), }
     list_filter = ('date_created', 'status')
     search_fields = ('title_startswith',)
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
