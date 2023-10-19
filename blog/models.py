@@ -67,3 +67,12 @@ class Comment(models.Model):
 # update later to order by popularity
     class Meta:
         ordering = ["-date_created"]
+
+
+class BlogPostLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog_post = models.ForeignKey('BlogPost', on_delete=models.CASCADE)
+    liked_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} likes {self.blog_post.title}'
