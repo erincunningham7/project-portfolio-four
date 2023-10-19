@@ -20,4 +20,4 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(BlogPostLike)
 class BlogPostLikeAdmin(admin.ModelAdmin):
     list_filter = ('liked_at',)
-    search_fields = ('user__username', 'blog_post_title')
+    search_fields = ('user__username', 'blog_post__title')
