@@ -1,6 +1,6 @@
 from django.contrib import admin
 # import blogpost model
-from .models import BlogPost, Comment, BlogPostLike
+from .models import BlogPost, Comment
 
 
 @admin.register(BlogPost)
@@ -17,7 +17,7 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('author_startswith',)
 
 
-@admin.register(BlogPostLike)
-class BlogPostLikeAdmin(admin.ModelAdmin):
-    list_filter = ('liked_at',)
-    search_fields = ('user__username', 'blog_post__title')
+# @admin.register(BlogPostLike)
+# class BlogPostLikeAdmin(admin.ModelAdmin):
+#     list_filter = ('liked_at',)
+#     search_fields = ('user__username', 'blog_post__title')

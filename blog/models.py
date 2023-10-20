@@ -27,9 +27,8 @@ class BlogPost(models.Model):
     status = models.CharField(
         max_length=6, choices=STATUS_CHOICES, default=DRAFT)
     slug = models.SlugField(max_length=250, unique=True, blank=True, null=True)
-    # likes = models.ManyToManyField(User, related_name='post_likes',
-    # blank=True)
-    # likes = models.IntegerField(default=0)
+    likes = models.ManyToManyField(
+        User, related_name='blogpost_like', blank=True)
 
     # return string representation of title
     def __str__(self):
@@ -43,10 +42,8 @@ class BlogPost(models.Model):
         ordering = ["-date_created"]
 
     # helper method to return num of likes on a post
-    # def number_of_likes(self):
-    #    return self.likes.count()
-    # def get_likes(self):
-    #    return self.likes
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 # create a comment class based model inheriting from the standard model
@@ -69,10 +66,10 @@ class Comment(models.Model):
         ordering = ["-date_created"]
 
 
-class BlogPostLike(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog_post = models.ForeignKey('BlogPost', on_delete=models.CASCADE)
-    liked_at = models.DateTimeField(auto_now_add=True)
+# class BlogPostLike(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     blog_post = models.ForeignKey('BlogPost', on_delete=models.CASCADE)
+#     liked_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'{self.user.username} likes {self.blog_post.title}'
+#     def __str__(self):
+#         return f'{self.user.username} likes {self.blog_post.title}'
