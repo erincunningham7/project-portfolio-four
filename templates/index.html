@@ -10,27 +10,36 @@
             <div class="card-body">
               <h2 class="card-title">{{ blogpost.title }}</h2>
               <span class="card-date">{{ blogpost.date_created }}</span>
-              <img
-                class="card-img"
-                src="https://images.theconversation.com/files/49300/original/wsvgr6jh-1400776414.jpg?ixlib=rb-1.1.0&q=30&auto=format&w=754&h=1130&fit=crop&dpr=2"
-              />
-              <p class="card-text">{{ blogpost.content }}</p>
-              <!-- Add styling and layout  -->
+              <div class="image-container">
+                {% if "placeholder" in post.featured_image.url %}
+                <img
+                  class="card-img"
+                  src="https://images.theconversation.com/files/49300/original/wsvgr6jh-1400776414.jpg?ixlib=rb-1.1.0&q=30&auto=format&w=754&h=1130&fit=crop&dpr=2"
+                />
+                {% else %}
+                <img
+                  class="card-img-top"
+                  src=" {{ post.featured_image.url }}"
+                />
+                {% endif %}
+                <p class="card-text">{{ blogpost.content }}</p>
+                <!-- Add styling and layout  -->
+              </div>
             </div>
+            <a href="#" class="post-link">
+              <h2 class="card-title">{{ blogpost.title }}</h2>
+            </a>
+            <hr />
+            <p class="card-text text-muted h6">
+              {{ blogpost.date_created }} <i class="far fa-heart"></i> {{
+              blogpost.number_of_likes }}
+            </p>
           </div>
-          <a href="#" class="post-link">
-            <h2 class="card-title">{{ blogpost.title }}</h2>
-          </a>
-          <hr />
-          <p class="card-text text-muted h6">
-            {{ blogpost.date_created }} <i class="far fa-heart"></i> {{
-            blogpost.number_of_likes }}
-          </p>
+          {% if forloop.counter|divisibleby:3 %}
         </div>
-        {% if forloop.counter|divisibleby:3 %}
+        <div class="row">{% endif %} {% endfor %}</div>
       </div>
-      <div class="row">{% endif %} {% endfor %}</div>
     </div>
   </div>
+  {% endblock %}
 </div>
-{% endblock %}
