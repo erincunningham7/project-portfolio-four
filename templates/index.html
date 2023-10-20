@@ -1,12 +1,28 @@
 {% extends "base.html" %} {% block content %}
-
 <div class="container-fluid">
   <div class="row">
     <!-- Blog entry column -->
     <div class="col-12 mt-3 left">
-      <div class="row">{% for blogpost in blog_list_view %} {% endfor %}</div>
+      <div class="row">
+        {% for blogpost in blog_posts %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{ blogpost.title }}</h2>
+              <span class="card-date">{{ blogpost.date_created }}</span>
+              <img
+                class="card-img"
+                src="https://images.theconversation.com/files/49300/original/wsvgr6jh-1400776414.jpg?ixlib=rb-1.1.0&q=30&auto=format&w=754&h=1130&fit=crop&dpr=2"
+              />
+              <p class="card-text">{{ blogpost.content }}</p>
+              <!-- Add styling and layout  -->
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+      </div>
+      <div class="row">{% endif %} {% endfor %}</div>
     </div>
   </div>
 </div>
-
-{%endblock%}
+{% endblock %}
